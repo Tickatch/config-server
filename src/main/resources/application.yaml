@@ -1,0 +1,54 @@
+server:
+  port: ${SERVER_PORT:8888}
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${CONFIG_REPO_URI:https://github.com/Tickatch/config-repo}
+          default-label: ${CONFIG_REPO_BRANCH:main}
+          search-paths:
+            - configs/common
+            - configs/{application}
+            - configs/{application}/{profile}
+          basedir: configs
+          clone-on-start: true
+          timeout: 10
+
+# Eureka Client
+eureka:
+  instance:
+    prefer-ip-address: false
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:localhost}
+  client:
+    register-with-eureka: ${EUREKA_REGISTER:true}
+    fetch-registry: ${EUREKA_FETCH:true}
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, metrics, refresh, busrefresh
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+# Tracing
+management.tracing:
+  sampling:
+    probability: 1.0
+
+# Logging
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.config: DEBUG

@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.tickatch'
+version = '0.0.1-SNAPSHOT'
+description = 'Config Server'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', '2025.1.0')
+}
+
+dependencies {
+    // Config Server
+    implementation 'org.springframework.cloud:spring-cloud-config-server'
+
+    // Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Eureka Client (Config Server도 Eureka에 등록)
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    // Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // Metrics - Prometheus
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
+    // Tracing - Zipkin Brave
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+
+    // Logging - Logstash (ELK)
+    implementation 'net.logstash.logback:logstash-logback-encoder:8.0'
+
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

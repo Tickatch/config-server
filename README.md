@@ -59,7 +59,7 @@ docker build -t ghcr.io/tickatch/config-server:latest .
                         ▼
               ┌─────────────────┐
               │  Config Server  │
-              │     :8888       │
+              │     :3100       │
               └─────────────────┘
                         │
         ┌───────────────┼───────────────┐
@@ -74,21 +74,21 @@ docker build -t ghcr.io/tickatch/config-server:latest .
 
 ## 포트
 
-| 서비스 | 포트 |
+| 서비스 | 포트   |
 |--------|------|
-| config-server | 8888 |
+| config-server | 3100 |
 
 ---
 
 ## 환경 변수
 
-| 변수 | 기본값 | 설명 |
-|------|--------|------|
-| `SERVER_PORT` | 8888 | 서버 포트 |
+| 변수 | 기본값                                     | 설명 |
+|------|-----------------------------------------|------|
+| `SERVER_PORT` | 8888                                    | 서버 포트 |
 | `CONFIG_REPO_URI` | https://github.com/tickatch/config-repo | Git 저장소 URI |
-| `CONFIG_REPO_BRANCH` | main | Git 브랜치 |
-| `EUREKA_CLIENT_SERVICEURL_DEFAULTZONE` | http://localhost:8761/eureka/ | Eureka 서버 주소 |
-| `ZIPKIN_ENDPOINT` | http://localhost:9411/api/v2/spans | Zipkin 엔드포인트 |
+| `CONFIG_REPO_BRANCH` | main                                    | Git 브랜치 |
+| `EUREKA_CLIENT_SERVICEURL_DEFAULTZONE` | http://localhost:3151/eureka/           | Eureka 서버 주소 |
+| `ZIPKIN_ENDPOINT` | http://localhost:9411/api/v2/spans      | Zipkin 엔드포인트 |
 
 ---
 

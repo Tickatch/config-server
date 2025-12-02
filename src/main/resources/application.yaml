@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8888}
+  port: ${SERVER_PORT:3100}
 
 spring:
   application:
@@ -10,6 +10,7 @@ spring:
         git:
           uri: ${CONFIG_REPO_URI:https://github.com/Tickatch/config-repo}
           default-label: ${CONFIG_REPO_BRANCH:main}
+          try-master-branch: false
           search-paths:
             - configs/common
             - configs/{application}
@@ -27,7 +28,7 @@ eureka:
     register-with-eureka: ${EUREKA_REGISTER:true}
     fetch-registry: ${EUREKA_FETCH:true}
     service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:https://www.pinjun.xyz/eureka1/}
 
 # Actuator
 management:

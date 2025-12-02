@@ -14,7 +14,7 @@ spring:
             - configs/common
             - configs/{application}
             - configs/{application}/{profile}
-          basedir: configs
+#          basedir: configs
           clone-on-start: true
           timeout: 10
 

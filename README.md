@@ -105,10 +105,10 @@ docker build -t ghcr.io/tickatch/config-server:latest .
 
 ```bash
 # gateway-server의 local 프로파일 설정 조회
-curl http://localhost:8888/gateway-server/local
+curl http://localhost:8080/gateway-server/local
 
 # account-service의 prod 프로파일 설정 조회
-curl http://localhost:8888/account-service/prod
+curl http://localhost:8081/account-service/prod
 ```
 
 ---
@@ -149,11 +149,11 @@ search-paths:
 ## 의존 관계
 
 ```
-Eureka Server (8761, 8762)
+Eureka Server (3151, 3152)
         ▲
         │ 등록
         │
-Config Server (8888)
+Config Server (3100)
 ```
 
 Config Server는 Eureka Server가 먼저 기동되어야 합니다.
